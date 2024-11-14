@@ -117,5 +117,11 @@
       "postId": 4,
       "content": "Comment 11"
     }
+  ],
+  "permissions": [
+    {
+      "id": 1,
+      "admin": "admin"
+    }
   ]
 }
