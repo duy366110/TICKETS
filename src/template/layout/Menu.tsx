@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Box } from '@mui/material';
-// import LabelIcon from '@mui/icons-material/Label';
+import LabelIcon from '@mui/icons-material/Label';
 
 import {
     useTranslate,
     DashboardMenuItem,
-    // MenuItemLink,
+    MenuItemLink,
     MenuProps,
     useSidebarState,
 } from 'react-admin';
@@ -133,16 +133,16 @@ const Menu = ({ dense = false }: MenuProps) => {
                 })}
                 leftIcon={<reviews.icon />}
                 dense={dense}
-            />
+            /> */}
             <MenuItemLink
-                to="/access"
+                to="/comments"
                 state={{ _scrollToTop: true }}
                 primaryText={translate(`resources.access.name`, {
                     smart_count: 2,
                 })}
-                leftIcon={<reviews.icon />}
+                leftIcon={<LabelIcon />}
                 dense={dense}
-            /> */}
+            />
         </Box>
     );
 };

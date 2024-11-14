@@ -14,6 +14,8 @@ import { dataProvider } from "@/providers/dataProvider";
 import { authProvider } from "@/providers/authProvider";
 import { i18nProvider } from "@/providers/i18nProvider";
 
+import comment from "@/containers/comment/index";
+
 const store = localStorageStore(undefined, 'TICKETS');
 
 const App = () => {
@@ -38,12 +40,7 @@ const App = () => {
         edit={EditGuesser}
         show={ShowGuesser}
       />
-      <Resource
-        name="comments"
-        list={ListGuesser}
-        edit={EditGuesser}
-        show={ShowGuesser}
-      />
+      <Resource name="comments" {...comment} />
     </Admin>
   );
 }
