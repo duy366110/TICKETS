@@ -5,34 +5,42 @@ import data from "@/fakedatas/users.json";
  * This authProvider is only for test purposes. Don't use it in production.
  */
 export const authProvider: AuthProvider = {
-  login: ({ username, password }) => {
-    console.log(data.users);
-    const user = data.users.find(
-      (u) => u.username === username && u.password === password,
-    );
+  login: ({ username, password: usePassword }: any) => {
+    const user = data.users.find((u) => u.username === username);
 
     if (user) {
-      // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+      if (user.password !== usePassword) {
+        return Promise.reject(new Error("Password invalid"));
+      }
+
       let { password, ...userToPersist } = user;
       localStorage.setItem("user", JSON.stringify(userToPersist));
+      localStorage.setItem("permissions", "admin");
       return Promise.resolve();
     }
 
     return Promise.reject(
-      new HttpError("Unauthorized", 401, {
+      new HttpError("Unauthorized validation", 401, {
         message: "Invalid username or password",
       }),
     );
   },
   logout: () => {
-    localStorage.removeItem("user");
+    localStorage.clear();
     return Promise.resolve();
   },
-  checkError: () => Promise.resolve(),
+  checkError: () => {
+    return Promise.resolve();
+  },
   checkAuth: () =>
     localStorage.getItem("user") ? Promise.resolve() : Promise.reject(),
   getPermissions: () => {
-    return Promise.resolve(undefined);
+    const permissions = localStorage.getItem("permissions"); // Lấy từ localStorage
+    if (permissions) {
+      return Promise.resolve(permissions);
+    } else {
+      return Promise.resolve(null);
+    }
   },
   getIdentity: () => {
     const persistedUser = localStorage.getItem("user");
