@@ -1,13 +1,15 @@
 import { Create, SimpleForm } from 'react-admin';
-import Input from "@/components/ui/input/Input";
+import InputField from "@/components/ui/InputField/InputField";
 import { RULES } from "@/constants/rules";
+import EditorField from "@/components/ui/EditorField/EditorField";
 
 const CommentCreate = (props: any) => {
 
   return (
     <Create redirect="list" {...props}>
       <SimpleForm>
-        <Input source="username" label="username" validate={[RULES.notEmpty]} />
+        <InputField source="username" label="username" validate={[RULES.notEmpty]} />
+        <EditorField source="content" validate={[RULES.notEmpty]} />
       </SimpleForm>
     </Create>
   );

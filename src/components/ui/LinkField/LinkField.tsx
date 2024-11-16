@@ -33,7 +33,7 @@ const FullNameField = (props: Props | any) => {
     ) : null;
 };
 
-const CustomLinkField = (_: FieldProps<any>) => {
+const LinkFieldComponent = (_: FieldProps<any>) => {
     let contextAccess: any = useRecordContext<Access>();
     let { type, source, label }: any = _;
     let record = null;
@@ -62,4 +62,4 @@ const CustomLinkField = (_: FieldProps<any>) => {
     );
 };
 
-export default CustomLinkField;
+export default LinkFieldComponent;
