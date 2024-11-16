@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Create, SimpleForm, TextInput } from "react-admin";
 import { Drawer } from "@mui/material";
 import InputField from "@/components/ui/InputField/InputField";
+import EditorField from "@/components/ui/EditorField/EditorField";
 import { RULES } from "@/constants/rules";
+import { required, regex } from 'react-admin';
 
 const CommentEdit = (props: any) => {
   // Quản lý trạng thái toggle
@@ -28,12 +30,14 @@ const CommentEdit = (props: any) => {
         <InputField source="username" label="username" validate={[RULES.notEmpty]} />
 
         <TextInput
-          source="content"
-          label="Content"
+          source="desc"
+          label="Description"
           multiline
           onFocus={handleFocus}
           onBlur={handleBlur}
         />
+
+        <EditorField source="content" validate={required("Not empty")} />
 
         <Drawer
           anchor="right"
