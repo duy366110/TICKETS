@@ -1,7 +1,7 @@
 import { SelectInput, SelectArrayInput } from 'react-admin';
 import { Box } from '@mui/material';
 
-const Select = (props: any) => {
+const SelectField = (props: any) => {
     return (
         <Box sx={{ width: '100%' }}>
             {props.type === 'multiple' && (
@@ -24,4 +24,4 @@ const Select = (props: any) => {
     );
 };
 
-export default Select;
+export default SelectField;

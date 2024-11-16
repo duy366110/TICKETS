@@ -1,6 +1,6 @@
 import { BooleanInput } from 'react-admin';
 
-const Switch = (props: any) => {
+const SwitchField = (props: any) => {
     return (
         <div>
             <BooleanInput
@@ -12,4 +12,4 @@ const Switch = (props: any) => {
     );
 };
 
-export default Switch;
+export default SwitchField;
