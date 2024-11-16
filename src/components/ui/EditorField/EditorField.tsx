@@ -3,7 +3,6 @@ import { useInput } from "react-admin";
 import { Editor } from "@tinymce/tinymce-react";
 
 const EditorField = ({ source, validate, record = {}, ...props }: any) => {
-  const inputProps = useInput({ source, validate, ...props });
   const { field, fieldState, isRequired, id, isTouched, isSubmitted }: any =
     useInput({
       source,
@@ -16,6 +15,7 @@ const EditorField = ({ source, validate, record = {}, ...props }: any) => {
 
   const handleEditorChange = (content: any) => {
     setEditorValue(content);
+    field.onChange(content);
   };
 
   const handleImageUpload = async (
@@ -26,7 +26,7 @@ const EditorField = ({ source, validate, record = {}, ...props }: any) => {
     const formData = new FormData();
     formData.append("file", blobInfo.blob());
 
-    let res = await fetch("http://localhost:8080/upload/single", {
+    let res = await fetch("/api/upload/single", {
       method: "POST",
       body: formData,
     });
@@ -52,12 +52,6 @@ const EditorField = ({ source, validate, record = {}, ...props }: any) => {
     }
   }, [upload]);
 
-  useEffect(() => {
-    if (editorValue) {
-      inputProps.field.onChange(editorValue);
-    }
-  }, [editorValue]);
-
   return (
     <div className={`w-full`}>
       <div className={`${fieldState.invalid && fieldState.error ? "border-2 border-error rounded-[10px]" : ""}`}>
@@ -76,11 +70,12 @@ const EditorField = ({ source, validate, record = {}, ...props }: any) => {
               "charmap",
               "preview",
               "anchor",
+              "table"
             ],
             toolbar:
-              "undo redo | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image",
+              "undo redo | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image | table",
             images_upload_handler: handleImageUpload,
-            images_upload_url: "http://localhost:8080/upload/single",
+            images_upload_url: "/api/upload/single",
             file_picker_types: "image",
           }}
           onEditorChange={handleEditorChange}
