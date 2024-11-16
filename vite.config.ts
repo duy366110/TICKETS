@@ -11,7 +11,8 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/api": {
-        target: "http://backend:8080",
+        target: "https://tickets-beatsha256.onrender.com",
+        // target: "http://localhost:8080",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
