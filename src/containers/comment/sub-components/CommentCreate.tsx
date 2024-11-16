@@ -10,7 +10,7 @@ const CommentCreate = (props: any) => {
     <Create redirect="list" {...props}>
       <SimpleForm>
         <InputField source="username" label="username" validate={[RULES.notEmpty]} />
-        <EditorField source="content" validate={required("Not empty")} />
+        <EditorField source="content" validate={[RULES.notEmpty]} />
       </SimpleForm>
     </Create>
   );
