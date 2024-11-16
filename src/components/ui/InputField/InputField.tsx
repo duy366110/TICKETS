@@ -1,7 +1,7 @@
 import { TextInput } from 'react-admin';
 import { Box } from '@mui/material';
 
-const Input = (props: any) => {
+const InputField = (props: any) => {
     return (
         <Box sx={{ width: '100%' }}>
             <TextInput
@@ -13,4 +13,4 @@ const Input = (props: any) => {
     );
 };
 
-export default Input;
+export default InputField;

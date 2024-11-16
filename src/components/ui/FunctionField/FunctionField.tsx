@@ -2,7 +2,7 @@ import {
     FunctionField,
 } from 'react-admin';
 
-const CustomFunctionField = (props: any) => {
+const FunctionsField = (props: any) => {
     return (
         <FunctionField
             label={props.label}
@@ -11,4 +11,4 @@ const CustomFunctionField = (props: any) => {
     );
 };
 
-export default CustomFunctionField;
+export default FunctionsField;
