@@ -55,6 +55,37 @@ const EditorField = ({ source, validate = [], record = {}, ...props }: any) => {
     }
   };
 
+  const handleImageUploadCallback = (cb: any, value: any, meta: any) => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.onchange = async function () {
+      const file = this.files[0];
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        const response = await fetch("/api/upload/single", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          cb(data.url, { title: file.name });
+        } else {
+          alert("Upload failed: " + data.message);
+        }
+      } catch (error) {
+        console.error("Upload error:", error);
+        alert("Error uploading image.");
+      }
+    };
+
+    input.click();
+  };
+
   useEffect(() => {
     if (upload) {
       let image = `<image src='${upload.src}' />`;
@@ -64,10 +95,10 @@ const EditorField = ({ source, validate = [], record = {}, ...props }: any) => {
   }, [upload]);
 
   useEffect(() => {
-    if(fieldState.invalid && fieldState.error) {
+    if (fieldState.invalid && fieldState.error) {
       handleValidation(editorValue);
     }
-  }, [fieldState.invalid, fieldState.error])
+  }, [fieldState.invalid, fieldState.error]);
 
   return (
     <div className={`w-full`}>
@@ -96,19 +127,19 @@ const EditorField = ({ source, validate = [], record = {}, ...props }: any) => {
             ],
             toolbar:
               "fontsize | fontfamily | forecolor backcolor | undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | link image | table",
+            // UPLOAD 2
             images_upload_handler: handleImageUpload,
             images_upload_url: "/api/upload/single",
+
+            // UPLOAD 1
+            image_title: true,
+            automatic_uploads: true,
             file_picker_types: "image",
+            file_picker_callback: handleImageUploadCallback,
           }}
           onEditorChange={handleEditorChange}
         />
       </div>
-
-      {/* {fieldState.invalid && fieldState.error && (
-        <span className="text-error text-sm ml-[14px]">
-          {validate(editorValue)}
-        </span>
-      )} */}
 
       {errors.length > 0 && (
         <ul className="text-error text-sm ml-[14px]">
