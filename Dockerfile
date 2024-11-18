@@ -21,7 +21,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Expose cổng 80 để truy cập vào ứng dụng
-EXPOSE 80
+EXPOSE 5173
 
 # Chạy Nginx
 CMD ["nginx", "-g", "daemon off;"]
