@@ -15,9 +15,12 @@ const CommentsComponent = (props: any) => {
       replies: [],
     },
   ]);
+  const [image, setImage] = useState('');
 
   const submitHandler = (newComment: any) => {
-    console.log(newComment);
+    const spanElement = document.querySelectorAll('span[data-text]')[0]
+
+    newComment.text = spanElement.innerHTML.toString();
     setComments([...comments, newComment]);
   };
 
@@ -29,21 +32,70 @@ const CommentsComponent = (props: any) => {
     setModalOpen(false);
   };
 
-  const handleUploadImage = (file: File) => {
+  const handleUploadImage = async (file: File) => {
     console.log("Uploaded image:", file);
+
+    const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        const response = await fetch("/api/upload/single", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          setImage(data.url);
+
+        } else {
+          alert("Upload failed: " + data.message);
+        }
+      } catch (error) {
+        console.error("Upload error:", error);
+        alert("Error uploading image.");
+      }
   };
 
   useEffect(() => {
-    document.querySelectorAll('.rdw-option-wrapper').forEach((button) => {
+    document.querySelectorAll('.rdw-option-wrapper[title="Image"]').forEach((button) => {
       button.addEventListener('click', handleOpenModal);
     });
 
     return () => {
-      document.querySelectorAll('.rdw-option-wrapper').forEach((button) => {
+      document.querySelectorAll('.rdw-option-wrapper[title="Image"]').forEach((button) => {
         button.removeEventListener('click', handleOpenModal);
       });
     };
   }, []);
+
+
+  useEffect(() => {
+    const addImageToContent = () => {
+      const spanElement = document.querySelectorAll('span[data-text]')[0];
+
+      if (spanElement && image) {
+        spanElement.innerHTML += `
+              <div>
+                <button class="image" id="1">click</button>
+                <img src="${image}" />
+              </div>
+        `;
+
+        document.querySelectorAll('.image').forEach((button: any) => {
+          button.addEventListener("click", (evevnt: any) => {
+            evevnt.preventDefault();
+            console.log("Hello world");
+          })
+        })
+
+      }
+    };
+  
+    // Sử dụng setTimeout để đợi DOM render xong (nếu cần thiết)
+    const timeoutId = setTimeout(addImageToContent, 100);
+    return () => clearTimeout(timeoutId);
+  }, [image])
 
   return (
     <div>
