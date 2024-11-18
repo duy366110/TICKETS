@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CommentSection } from "react-comments-section";
+import CommentUploadImage from "./sub-comments/CommentUploadImage";
 import "react-comments-section/dist/index.css";
 
 const CommentsComponent = (props: any) => {
+  const [modalOpen, setModalOpen] = useState(false);
   const [comments, setComments] = useState([
     {
       userId: "01a",
@@ -13,6 +15,35 @@ const CommentsComponent = (props: any) => {
       replies: [],
     },
   ]);
+
+  const submitHandler = (newComment: any) => {
+    console.log(newComment);
+    setComments([...comments, newComment]);
+  };
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleUploadImage = (file: File) => {
+    console.log("Uploaded image:", file);
+  };
+
+  useEffect(() => {
+    document.querySelectorAll('.rdw-option-wrapper').forEach((button) => {
+      button.addEventListener('click', handleOpenModal);
+    });
+
+    return () => {
+      document.querySelectorAll('.rdw-option-wrapper').forEach((button) => {
+        button.removeEventListener('click', handleOpenModal);
+      });
+    };
+  }, []);
 
   return (
     <div>
@@ -29,11 +60,20 @@ const CommentsComponent = (props: any) => {
         }}
         advancedInput={true}
         commentData={comments}
-        onSubmitAction={(newComment: any) => {
-          console.log("New comment:", newComment);
-          setComments([...comments, newComment]);
-        }}
+        onSubmitAction={submitHandler}
+        onDeleteAction={(commentId: any) =>
+          console.log("Comment deleted:", commentId)
+        }
+        onReplyAction={(replyData: any) =>
+          console.log("Reply submitted:", replyData)
+        }
+        onEditAction={(editedData: any) =>
+          console.log("Comment edited:", editedData)
+        }
+        customNoComment={() => <div>No comments yet</div>}
+        currentData={() => console.log("Fetching current data")}
       />
+      <CommentUploadImage open={modalOpen} onClose={handleCloseModal} onUpload={handleUploadImage}/>
     </div>
   );
 };
