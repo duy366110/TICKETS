@@ -256,6 +256,9 @@ const customEnglishMessages: TranslationMessages = {
         access: {
             name: 'Access',
         },
+        tickets: {
+            name: 'Tickets',
+        },
     },
 };
 

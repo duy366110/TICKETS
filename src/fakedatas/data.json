@@ -118,6 +118,63 @@
       "content": "Comment 11"
     }
   ],
+  "tickets": [
+    {
+      "id": 0,
+      "postId": 0,
+      "content": "Comment 1"
+    },
+    {
+      "id": 1,
+      "postId": 0,
+      "content": "Comment 2"
+    },
+    {
+      "id": 2,
+      "postId": 1,
+      "content": "Comment 3"
+    },
+    {
+      "id": 3,
+      "postId": 1,
+      "content": "Comment 4"
+    },
+    {
+      "id": 4,
+      "postId": 2,
+      "content": "Comment 5"
+    },
+    {
+      "id": 5,
+      "postId": 2,
+      "content": "Comment 6"
+    },
+    {
+      "id": 6,
+      "postId": 3,
+      "content": "Comment 7"
+    },
+    {
+      "id": 7,
+      "postId": 3,
+      "content": "Comment 8"
+    },
+    {
+      "id": 8,
+      "postId": 3,
+      "content": "Comment 9"
+    },
+    {
+      "id": 9,
+      "postId": 4,
+      "content": "Comment 10"
+    },
+    {
+      "id": 10,
+      "postId": 4,
+      "content": "Comment 11"
+    }
+  ],
   "permissions": [
     {
       "id": 1,

@@ -9,7 +9,7 @@ import { FilterComment } from "@/components/filters/Filters";
 import { ActionComment } from "@/components/actions/Actions";
 import { AsideComment } from "@/components/asides/Asides";
 
-const CommentList = (props: any) => {
+const TicketList = (props: any) => {
   const record = useRecordContext();
 
   useEffect(() => {
@@ -35,4 +35,4 @@ const CommentList = (props: any) => {
   );
 };
 
-export default CommentList;
+export default TicketList;

@@ -15,7 +15,7 @@ import { themes, ThemeName } from "@/template/themes/themes";
 import { dataProvider } from "@/providers/dataProvider";
 import { authProvider } from "@/providers/authProvider";
 import { i18nProvider } from "@/providers/i18nProvider";
-import comment from "@/containers/comment/index";
+import ticket from "@/containers/ticket/index";
 import { useEffect, useState } from "react";
 
 const store = localStorageStore(undefined, "TICKETS");
@@ -31,9 +31,7 @@ const App = () => {
   useEffect(() => {
     if (authProvider && typeof authProvider.getPermissions === 'function') {
       authProvider.getPermissions({}).then((perms) => {
-        console.log("Permissions từ authProvider:", perms);
         setPermissions(perms);
-
       }).catch((error) => {
         console.error('Lỗi khi lấy permissions:', error);
       });
@@ -42,7 +40,7 @@ const App = () => {
     }
   }, []);
 
-  const commentResource = comment(permissions);
+  const ticketResource = ticket(permissions);
 
   return (
     <Admin
@@ -62,10 +60,10 @@ const App = () => {
       />
 
         <Resource
-          name="comments"
-          list={commentResource.list}
-          create={commentResource.create}
-          edit={commentResource.edit}
+          name="tickets"
+          list={ticketResource.list}
+          create={ticketResource.create}
+          edit={ticketResource.edit}
         />
     </Admin>
   );

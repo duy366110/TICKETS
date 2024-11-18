@@ -2,9 +2,8 @@ import { Create, SimpleForm } from 'react-admin';
 import InputField from "@/components/ui/InputField/InputField";
 import { RULES } from "@/constants/rules";
 import EditorField from "@/components/ui/EditorField/EditorField";
-import { required, regex } from 'react-admin';
 
-const CommentCreate = (props: any) => {
+const TicketCreate = (props: any) => {
 
   return (
     <Create redirect="list" {...props}>
@@ -16,4 +15,4 @@ const CommentCreate = (props: any) => {
   );
 };
 
-export default CommentCreate;
+export default TicketCreate;
