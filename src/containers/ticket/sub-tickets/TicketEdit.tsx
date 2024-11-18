@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Create, SimpleForm, TextInput } from "react-admin";
 import { Drawer } from "@mui/material";
 import InputField from "@/components/ui/InputField/InputField";
-import CommentsComponent from "@/components/comments/Comment";
 import { RULES } from "@/constants/rules";
 
 const TicketEdit = (props: any) => {
@@ -32,8 +31,6 @@ const TicketEdit = (props: any) => {
           onFocus={handleFocus}
           onBlur={handleBlur}
         />
-
-        <CommentsComponent />
 
         <Drawer
           anchor="right"

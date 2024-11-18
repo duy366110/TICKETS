@@ -98,8 +98,19 @@ const CommentsComponent = (props: any) => {
   }, [image])
 
   return (
-    <div>
+    <div className="pt-[16px] pl-[16px]">
+      <h3 className="border-b pb-[5px] text-[15px] font-medium uppercase">Comments</h3>
       <CommentSection
+        titleStyle={{
+          display: 'none',
+        }}
+        overlayStyle={{
+          marginTop: "0px",
+          padding: "0px",
+        }}
+        hrStyle={{
+          display: "none"
+        }}
         currentUser={{
           currentUserId: "01a",
           currentUserImg: "https://ui-avatars.com/api/?name=Current+User",
