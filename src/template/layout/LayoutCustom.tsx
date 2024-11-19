@@ -23,10 +23,13 @@ const CustomLayout = ({ children, resource }: any) => {
       setDetail(false);
     }
 
+    let tabSideBar: any =  document.querySelector(".MuiDrawer-root");
     if(location.pathname.includes("create")) {
       setIsCustomAppBar(true);
+      tabSideBar.style.display = "none";
     } else {
       setIsCustomAppBar(false);
+      tabSideBar.style.display = "block";
     }
   }, [location.pathname]);
 
