@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { Layout } from "react-admin";
 import { useLocation } from "react-router-dom";
-import AppBar from "./AppBar";
-import Menu from "./Menu";
-import CommentsComponent from "@/components/comments/Comment";
 import { Grid, Container } from "@mui/material";
+import AppBar from "./AppBar/AppBar";
+import Menu from "./Menu";
+
+import AppBarCustom from "@/template/layout/AppBar/AppBarCustom";
+import CommentsComponent from "@/components/comments/Comment";
 
 const CustomLayout = ({ children, resource }: any) => {
   const location = useLocation();
   const [detail, setDetail] = useState<boolean>(false);
+  const [isCustomAppBar, setIsCustomAppBar] = useState<boolean>(false);
 
   useEffect(() => {
     if (/^\/tickets\/(\d+|\*)$/.test(location.pathname)) {
@@ -20,11 +23,15 @@ const CustomLayout = ({ children, resource }: any) => {
       setDetail(false);
     }
 
-    console.log(resource);
+    if(location.pathname.includes("create")) {
+      setIsCustomAppBar(true);
+    } else {
+      setIsCustomAppBar(false);
+    }
   }, [location.pathname]);
 
   return (
-    <Layout appBar={AppBar} menu={Menu}>
+    <Layout appBar={isCustomAppBar? AppBarCustom : AppBar} menu={Menu}>
       <Container>
         <Grid container spacing={2}>
           <Grid item xs={detail ? 6 : 12}>
