@@ -279,6 +279,9 @@ const customFrenchMessages: TranslationMessages = {
         access: {
             name: 'Accès',
         },
+        tickets: {
+            name: 'Tickets',
+        },
     },
 };
 

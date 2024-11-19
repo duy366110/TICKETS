@@ -2,19 +2,12 @@ import {
   List,
   DatagridConfigurable,
   TextField,
-  useRecordContext,
 } from "react-admin";
-import { useEffect } from "react";
 import { FilterComment } from "@/components/filters/Filters";
 import { ActionComment } from "@/components/actions/Actions";
 import { AsideComment } from "@/components/asides/Asides";
 
-const CommentList = (props: any) => {
-  const record = useRecordContext();
-
-  useEffect(() => {
-    console.log(record);
-  }, [record]);
+const TicketList = (props: any) => {
 
   return (
     <List
@@ -35,4 +28,4 @@ const CommentList = (props: any) => {
   );
 };
 
-export default CommentList;
+export default TicketList;
