@@ -13,7 +13,7 @@ const AppBarCustom = (props: any) => {
     <MuiAppBar className="h-[45px] mt-0 justify-center px-4" position="fixed" sx={{ boxShadow: "none", background: "none", marginTop: '0px' }}>
         <h2 className="flex items-center cursor-pointer" onClick={backHandler}>
             <ArrowBackIosIcon className="text-[15px] text-[#808080]" />
-            <TitlePortal className='!text-[#808080]'>Title</TitlePortal>
+            <TitlePortal className='!text-[#808080]'>Create</TitlePortal>
         </h2>
     </MuiAppBar>
   );
