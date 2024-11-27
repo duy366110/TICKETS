@@ -135,9 +135,9 @@ const Menu = ({ dense = false }: MenuProps) => {
                 dense={dense}
             /> */}
             <MenuItemLink
-                to="/comments"
+                to="/tickets"
                 state={{ _scrollToTop: true }}
-                primaryText={translate(`resources.access.name`, {
+                primaryText={translate(`resources.tickets.name`, {
                     smart_count: 2,
                 })}
                 leftIcon={<LabelIcon />}

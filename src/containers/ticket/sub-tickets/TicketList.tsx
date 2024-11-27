@@ -2,19 +2,24 @@ import {
   List,
   DatagridConfigurable,
   TextField,
-  useRecordContext,
 } from "react-admin";
 import { useEffect } from "react";
+import { DefaultApi  } from "@/data/output/api";
 import { FilterComment } from "@/components/filters/Filters";
 import { ActionComment } from "@/components/actions/Actions";
 import { AsideComment } from "@/components/asides/Asides";
 
-const CommentList = (props: any) => {
-  const record = useRecordContext();
+const TicketList = (props: any) => {
 
   useEffect(() => {
-    console.log(record);
-  }, [record]);
+    let callApi = async() => {
+      let res = await new DefaultApi().itemsGet();
+      console.log("Check log generator openapi");
+      console.log(res.data);
+    }
+
+    callApi();
+  }, [])
 
   return (
     <List
@@ -35,4 +40,4 @@ const CommentList = (props: any) => {
   );
 };
 
-export default CommentList;
+export default TicketList;

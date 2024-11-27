@@ -267,6 +267,9 @@ const customVietnameseMessages: TranslationMessages = {
         access: {
             name: 'Truy cập',
         },
+        tickets: {
+            name: 'Tickets',
+        },
     },
 };
 

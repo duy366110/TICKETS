@@ -1,8 +1,8 @@
 import { AppBar, TitlePortal } from 'react-admin';
 import { Box, useMediaQuery, Theme } from '@mui/material';
 
-import Logo from './Logo';
-import { AppBarToolbar } from './AppBarToolbar';
+import Logo from '@/template/layout/Logo';
+import { AppBarToolbar } from '@/template/layout/AppBar/utils/AppBarToolbar';
 
 const CustomAppBar = () => {
     const isLargeEnough = useMediaQuery<Theme>(theme =>

@@ -2,24 +2,19 @@ import { useState } from "react";
 import { Create, SimpleForm, TextInput } from "react-admin";
 import { Drawer } from "@mui/material";
 import InputField from "@/components/ui/InputField/InputField";
-import EditorField from "@/components/ui/EditorField/EditorField";
 import { RULES } from "@/constants/rules";
-import { required, regex } from 'react-admin';
 
-const CommentEdit = (props: any) => {
-  // Quản lý trạng thái toggle
+const TicketEdit = (props: any) => {
   const [asideOpen, setAsideOpen] = useState(false);
 
   const toggleAside = () => {
     setAsideOpen(!asideOpen);
   };
 
-  // Hàm mở Drawer
   const handleFocus = () => {
     setAsideOpen(true);
   };
 
-  // Hàm đóng Drawer
   const handleBlur = () => {
     setAsideOpen(false);
   };
@@ -37,8 +32,6 @@ const CommentEdit = (props: any) => {
           onBlur={handleBlur}
         />
 
-        <EditorField source="content" validate={required("Not empty")} />
-
         <Drawer
           anchor="right"
           open={asideOpen}
@@ -55,4 +48,4 @@ const CommentEdit = (props: any) => {
   );
 };
 
-export default CommentEdit;
+export default TicketEdit;
